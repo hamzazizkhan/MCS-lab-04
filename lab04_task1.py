@@ -29,11 +29,11 @@ def z3(pt, center_of_mass):
 
 
 
-n = 50
+n = 300
 seed_value = 42
 random.seed(seed_value)
-x = [random.uniform(-7, 7) for _ in range(n)]
-y = [random.uniform(-7, 7) for _ in range(n)]
+x = [random.uniform(-50, 50) for _ in range(n)]
+y = [random.uniform(-50, 50) for _ in range(n)]
 xy = list(zip(x, y))
 
 data = []
@@ -49,9 +49,9 @@ velocity.append(velocity_vectors)
 
 # manipulate n, initial dist of pts,  radius, frames, rho, neigh_rad
 frames = 200
-radius = [5, 10, 15]
-rho = [0.2,0.3,0.4,0.1]
-ab = [0.2,-1.2]
+radius = [5, 30, 60]
+rho = [-0.1,0.3,0.6,0.1]
+ab = [0.4,0.6]
 
 cm = []
 sumz2ne = 0
@@ -82,6 +82,7 @@ for frame in range(frames):
         velocity_vector = 1 / np.linalg.norm(pt) * pt
 
 
+
         theta1 = z1(pt, centre_mass_z1)
         rotation_matrix = np.array([[np.cos(theta1), -np.sin(theta1)],
                                     [np.sin(theta1), np.cos(theta1)]])
@@ -98,10 +99,10 @@ for frame in range(frames):
         new_velocity.append(tuple(v_rotated))'''
 
         # zone 2
-        neigh_rad = radius[1]
+        neigh_rad = radius[1] +radius[2]
 
         neighbourhood = [(point) for point in nc_z2 if tuple(point) != tuple(pt) if
-                             (point[0] - pt[0]) ** 2 + (point[1] - pt[1]) ** 2 <= neigh_rad]
+                             (point[0] - pt[0]) ** 2 + (point[1] - pt[1]) ** 2 <= neigh_rad**2]
         theta2 = z2(neighbourhood)
         rotation_matrix = np.array([[np.cos(theta2), -np.sin(theta2)],
                                     [np.sin(theta2), np.cos(theta2)]])
@@ -147,25 +148,28 @@ for frame in range(frames):
             new_velocity_vector = v_rotated_theta1 * rho[0] + v_rotated_theta2 *rho[1] + v_rotated_theta3*rho[2] + unit_vector * rho[3]
         if pt[0] ** 2 + pt[1] ** 2 > radius[2] ** 2:
             print('MEEEEEEEEE')
-            new_velocity_vector = v_rotated_theta1 * -0.2 + v_rotated_theta2 *0 + v_rotated_theta3*1 + unit_vector * 0.2
+            new_velocity_vector = velocity_vector*ab[0] + unit_vector*ab[1]
 
             #new_velocity_vector = ab[0]*velocity_vector + ab[1]*unit_vector
         #rotation_matrix = np.array([[np.cos(new_theta), -np.sin(new_theta)],
          #                           [np.sin(new_theta), np.cos(new_theta)]])
 
         #v_rotated = np.dot(rotation_matrix, velocity_vector)
-        newpt = pt + new_velocity_vector
+        newpt = pt + (velocity_vector +new_velocity_vector)
         new_xy.append(tuple(newpt))
         new_velocity.append(tuple(new_velocity_vector))
+
         if pt[0] ** 2 + pt[1] ** 2 > radius[2]**2:
-            print('\n')
-            print(pt)
-            print(velocity_vector)
-            print(v_rotated_theta1, 'z1')
-            print(v_rotated_theta2, 'z2')
-            print(v_rotated_theta3, 'z3')
-            print(new_velocity_vector)
-            print('=================')
+            print('pt outside z3')
+        print('\n')
+        print(pt,'pt')
+        print(velocity_vector, 'velo')
+        print(v_rotated_theta1, 'z1')
+        print(v_rotated_theta2, 'z2')
+        print(v_rotated_theta3, 'z3')
+        print(new_velocity_vector, 'new velo')
+        print(newpt, 'new pt')
+        print('=================')
 
 
     xy = new_xy
@@ -180,9 +184,14 @@ fig, ax = plt.subplots()
 ax.set_xlim([-20, 20])
 ax.set_ylim([-20, 20])
 
-print(sumz2ne)
+'''print(sumz2ne)
 print(sumz3ne)
 print(cm)
+'''
+for i in range(frames):
+    print(data[i])
+    print(velocity[i])
+
 
 def update(frame):
     ''' ax.clear()
