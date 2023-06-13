@@ -2,6 +2,9 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
 import random
+from PIL import Image
+import glob
+
 import matplotlib.patches as patches
 '''
 normalize velocities?
@@ -40,7 +43,8 @@ velocities = []
 n = 50
 radius = [2, 3, 8]
 
-rho = [0, 0, 1, 0]
+# rho used for boids movie
+rho = [0.35,0.25,0.3,0.1]
 alpha = 0.3
 beta = 0.7
 #rho = [1,1,1,1]
@@ -168,7 +172,7 @@ for frame in range(frames):
 
 
 ##########################visulisation##########################
-'''fig, ax = plt.subplots()
+fig, ax = plt.subplots()
 
 ax.set_xlim([-10, 10])
 ax.set_ylim([-10, 10])
@@ -200,7 +204,7 @@ def update(frame):
 ani = animation.FuncAnimation(fig, update, frames=frames, interval=100)
 
 plt.show()
-'''
+
 
 ########################## task 2 ##########################
 
@@ -282,8 +286,8 @@ ax.scatter(x_vals, y_vals, color='red')
 ax.plot(x_vals, y_vals, color='green',linestyle = 'dashed')
 plt.xlabel('r1/r3 and r2/r3')
 plt.ylabel('agg measure')
-plt.savefig('agg_measure_vs_r1,r3_and_r2,r3')
-plt.show()
+'''plt.savefig('agg_measure_vs_r1,r3_and_r2,r3')
+plt.show()'''
 
 '''
 as rho(i) increases what happens to the measure
@@ -342,9 +346,9 @@ ax.scatter(x_vals_new, y_vals, color='red')
 ax.plot(x_vals_new, y_vals, color='green',linestyle = 'dashed')
 plt.xlabel('rho 1')
 plt.ylabel('agg measure')
-plt.savefig('rho 1')
+'''plt.savefig('rho 1')
 
-plt.show()
+plt.show()'''
 
 y_vals = [5.268873315561877,  5.573759676115517,  5.003608184583171,  5.4229350013581294,
 4.6342646180845115, 5.518406906479246,  5.198686809660206 , 5.1074011309935115 ,4.254195454391614]
@@ -357,8 +361,8 @@ ax.scatter(x_vals_new, y_vals, color='red')
 ax.plot(x_vals_new, y_vals, color='green',linestyle = 'dashed')
 plt.xlabel('rho 2')
 plt.ylabel('agg measure')
-plt.savefig('rho 2')
-plt.show()
+'''plt.savefig('rho 2')
+plt.show()'''
 
 y_vals = [5.268873315561877 , 5.253696487300989 , 4.826155756953032 , 4.21633775744711,
 4.494264154910868 , 2.5259457856213836, 1.9548732210024538, 1.64786411858181,   1.3804517032445867]
@@ -373,8 +377,8 @@ ax.scatter(x_vals_new, y_vals, color='red')
 ax.plot(x_vals_new, y_vals, color='green',linestyle = 'dashed')
 plt.xlabel('rho 3')
 plt.ylabel('agg measure')
-plt.savefig('rho 3')
-plt.show()
+'''plt.savefig('rho 3')
+plt.show()'''
 
 
 
