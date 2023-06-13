@@ -94,11 +94,14 @@ high aggregation will mean that the boids are closer together and so the distanc
 i chose eucledian distance between boids in zone 3 so that we can see how the distance of boids within each group changes as aggregation changes. we can see this effect below:
 
 ad = 5.212355101326541 for rho = [0.4,0.3,0.2,0.1]
+
 ad = 5.4419098518436 for rho = [0.6,0.1,0.2,0.1]
+
 ad = 6.159537265621044 for rho = [0.7,0.1,0.1,0.1]
 
 ad = aggregation and rho = ρ1 +ρ2 +ρ3 +ρ4 =1.
-z1 effect is increased by increasing rho[0] from 0.4 to 0.7. this provides more repulsiong within groups reducing the aggregation.
+
+z1 effect is increased by increasing rho[0] from 0.4 to 0.7. this provides more repulsion within groups reducing the aggregation.
 
 as you reduce aggregation, the average distance between boids in a group increases concluding that the measure works as desired.
 
@@ -108,6 +111,7 @@ radius 2,3,8 was used for z1, z2, z3 repectively.
 please refer to agg_measure_vs_r1,r3_and_r2,r3.png.
 
 r1 = [2, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5]
+
 r2 = [3, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5]
 
 as the radii of r1 and r2 increase, the distance between the neighouring boids also increase because the radius of repulsion increases which prevents boids from getting too close.
@@ -128,13 +132,21 @@ radius 2,3,8 was used for z1, z2, z3 repectively.
 for rho1.png, rho1 was steadily increased while reducing rho2, 3 and 4 as shown below:
 
 5.268873315561877  rho = [0.25,0.25,0.25,0.25]
+
 4.862586572367124  rho = [0.3,0.2,0.25,0.25]
+
 5.754399760593815  rho = [0.4,0.2,0.2,0.2]
+
 4.950860126377452  rho = [0.5,0.1,0.2,0.2]
+
 5.264569045313615  rho = [0.6,0.1,0.1,0.2]
+
 6.159537265621044  rho = [0.7,0.1,0.1,0.1]
+
 5.661649797697571  rho = [0.8,0.1,0.1,0]
+
 6.584721828283921  rho = [0.9,0.1,0,0]
+
 6.901538659033054  rho = [1,0,0,0]
 
 the first value is the aggregation measure.
@@ -146,13 +158,21 @@ rho2.png shows the effect of increasing z2 effect.
 
 rho(2)
 5.268873315561877  rho = [0.25,0.25,0.25,0.25]
+
 5.573759676115517  rho = [0.2,0.3,0.25,0.25]
+
 5.003608184583171  rho = [0.2,0.4,0.2,0.2]
+
 5.4229350013581294 rho = [0.1,0.5,0.2,0.2]
+
 4.6342646180845115 rho = [0.1,0.6,0.1,0.2]
+
 5.518406906479246  rho = [0.1,0.7,0.1,0.1]
+
 5.198686809660206  rho = [0.1,0.8,0.1,0]
+
 5.1074011309935115 rho = [0.1,0.9,0,0]
+
 4.254195454391614  rho = [0,1,0,0]
 
 aggregation increases as alignment effect increases. there are too many jumps in the aggregation measure concluding that increasing the z2 effect is not a reliable way
@@ -162,16 +182,24 @@ rho3.png shows the effect of increasing z3 effect.
 
 rho(3)
 5.268873315561877  rho = [0.25,0.25,0.25,0.25]
+
 5.253696487300989  rho = [0.25,0.2,0.3,0.25]
+
 4.826155756953032  rho = [0.2,0.2,0.4,0.2]
+
 4.21633775744711   rho = [0.2,0.1,0.5,0.2]
+
 4.494264154910868  rho = [0.1,0.1,0.6,0.2]
+
 2.5259457856213836 rho = [0.1,0.1,0.7,0.1]
+
 1.9548732210024538 rho = [0.1,0.1,0.8,0]
+
 1.64786411858181   rho = [0,0.1,.9,0]
+
 1.3804517032445867 rho = [0,0,1,0]
 
-There is only one jump in aggregation measure. aggregation increase as zone 3 effect increases. This is rational as z3 attracts nearby boids to the centre of mass in zone 3 resulting in boids being closer together.
+There is only one jump in aggregation measure. aggregation increases as zone 3 effect increases. This is rational as z3 attracts nearby boids to the centre of mass in zone 3 resulting in boids being closer together.
 increasing z3 effect would be the most reliable way to increase aggregation.
 
 
